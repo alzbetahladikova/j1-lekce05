@@ -6,8 +6,11 @@ public class Osoba {
     private String jmeno;
     private String prijmeni;
     private String rodneCislo;
-
+    private SocialniSite socialniSite;
     private Telefon telefon;
+    private String soukoromyMail;
+    private String pracovniMail;
+    private Adresa adresa;
 
     public void setJmeno(String jmeno) {
         Objects.requireNonNull(jmeno);
@@ -52,6 +55,14 @@ public class Osoba {
         this.rodneCislo = rodneCislo;
     }
 
+    public SocialniSite getSocialniSite() {
+        return socialniSite;
+    }
+
+    public void setSocialniSite(SocialniSite socialniSite) {
+        this.socialniSite = socialniSite;
+    }
+
     public Telefon getTelefon() {
         return telefon;
     }
@@ -60,8 +71,44 @@ public class Osoba {
         this.telefon = telefon;
     }
 
-    public String toString() {
-        return jmeno + " " + prijmeni + " (" + rodneCislo + ")";
+    public String getSoukoromyMail() {
+        return soukoromyMail;
     }
-}
+
+    public void setSoukoromyMail(String soukoromyMail) {
+        Objects.requireNonNull(soukoromyMail);
+        if (soukoromyMail.isBlank()) {
+            System.err.println("Soukromý email musí být vyplněn.");
+
+            return;}
+
+        if (!soukoromyMail.contains("@")) {
+            System.err.println("Mail musí obsahovat @");
+            return;}
+            this.soukoromyMail = soukoromyMail;
+        }
+
+        public String getPracovniMail () {
+            return pracovniMail;
+        }
+
+        public void setPracovniMail (String pracovniMail){
+            this.pracovniMail = pracovniMail;
+        }
+
+        public Adresa getAdresa () {
+            return adresa;
+        }
+
+        public void setAdresa (Adresa adresa){
+            this.adresa = adresa;
+                    }
+public String getKontakty(){return soukoromyMail +" "+ pracovniMail +" "+telefon +" "+ adresa ;}
+        public String toString () {
+            return jmeno + " " + prijmeni + " "+"RČ: "+ " (" + rodneCislo + ")"
+            /* + " " + adresa + " " + soukoromyMail + " " + "Telefon"+" "+telefon */
+            + getKontakty();
+
+        }
+    }
 
